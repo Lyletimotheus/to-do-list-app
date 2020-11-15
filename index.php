@@ -21,10 +21,11 @@ mysqli_free_result($result);
 //Check for Submit
 if(isset($_POST['submit'])){
 // Validate and sanitize the data here
-
+$filtered_description = filter_var($_POST['description'],FILTER_SANITIZE_STRING);
+$filtered_due_date = filter_var($_POST['due_date'],FILTER_SANITIZE_STRING) ;
 // Get the data
-$description = mysqli_real_escape_string($conn,$_POST['description']);
-$duedate = mysqli_real_escape_string($conn,$_POST['due_date']);
+$description = mysqli_real_escape_string($conn,$filtered_description);
+$duedate = mysqli_real_escape_string($conn,$filtered_due_date);
 //Add the query
 $query = "INSERT INTO tasks(task_description, due_date)
             VALUES('$description','$duedate')";
@@ -97,27 +98,17 @@ mysqli_close($conn);
 <?php
 foreach($tasks as $task){
     echo   '<div class="table-body">
-            
+            <hr />
             <div class="task">
                 <p>1</p>
                 <p>'.$task['task_description'].'</p>
                 <p>'.$task['due_date'].'</p>
                 <div>
+               
                     <button class="btn-warning edit-task">Edit</button>
                     <button class="btn-danger remove-task">Remove</button>
                 </div>
-            </div>
-
-            <div class="task">
-                <p>2</p>
-                <p>Task 2</p>
-                <p>2020/01/02</p>
-                <div>
-                    <button class="btn-warning edit-task">Edit</button>
-                    <button class="btn-danger remove-task">Remove</button>
-                </div>
-            </div>
-           
+            </div>           
         </div>';
 }
 // end of class="table-body"
