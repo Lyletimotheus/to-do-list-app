@@ -1,23 +1,47 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To do list app</title>
+<?php 
+require ('config/config.php');
+require ('config/database.php');
+include ('includes/header.php');
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="css/style.css">
+//Create query
+$query = "SELECT * FROM tasks
+            ORDER BY due_date ASC";
 
-</head>
-<body>
-    
-    <!-- HEADER -->
-    <header>
-        <h1>TO DO LIST APP</h1>
-        <p>Welcome to your tasks Boon</p>
-        <br>
-        <button class="btn-primary add-task">Add Task</button>
-    </header>
+//Get the result
+$result = mysqli_query($conn, $query);
+
+//Fetch the data
+$tasks = mysqli_fetch_all($result, MYSQLI_ASSOC);
+// var_dump($tasks);
+
+//Free the Result
+mysqli_free_result($result);
+
+
+//Check for Submit
+if(isset($_POST['submit'])){
+// Validate and sanitize the data here
+
+// Get the data
+$description = mysqli_real_escape_string($conn,$_POST['description']);
+$duedate = mysqli_real_escape_string($conn,$_POST['due_date']);
+//Add the query
+$query = "INSERT INTO tasks(task_description, due_date)
+            VALUES('$description','$duedate')";
+
+if(mysqli_query($conn,$query)){
+    header ('Location:'.ROOT_URL.'');
+}else{
+    echo "An error has occured. Your task was not added.<br />
+            Error: ".mysqli_error($conn);
+}
+}
+
+//Close the connection
+mysqli_close($conn);
+
+
+?>
     <!-- END OF HEADER -->
 
     <br>
@@ -29,17 +53,17 @@
             <span class="close-modal">&times;</span>
             <h4 class="task-heading"></h4>
             <br>
-            <form>
+            <form method="POST" action="<?php echo $_SERVER['PHP_SELF']?>">
                 <label for="">Description: 
-                    <input type="text">
+                    <input type="text" name="description">
                 </label>
                 <br>
                 <label for="">Due date:
-                    <input type="date">
+                    <input type="date" name="due_date">
                 </label>
                 <br>
-                <button type="submit" class="btn-confirm insert-button">Confirm</button>
-                <button type="submit" class="btn-confirm edit-button">Confirm</button>
+                <button type="submit" class="btn-confirm insert-button" name="submit">Confirm(I)</button>
+                <button type="submit" class="btn-confirm edit-button">Confirm(E)</button>
             </form>
         </div>
     </div>
@@ -70,12 +94,14 @@
             <h2>Edit/Remove</h2>
         </div>
 
-        <div class="table-body">
+<?php
+foreach($tasks as $task){
+    echo   '<div class="table-body">
             
             <div class="task">
                 <p>1</p>
-                <p>Task 1</p>
-                <p>2020/01/01</p>
+                <p>'.$task['task_description'].'</p>
+                <p>'.$task['due_date'].'</p>
                 <div>
                     <button class="btn-warning edit-task">Edit</button>
                     <button class="btn-danger remove-task">Remove</button>
@@ -92,10 +118,11 @@
                 </div>
             </div>
            
-        </div> <!--end of class="table-body"-->
-
+        </div>';
+}
+// end of class="table-body"
+?>
     </div> <!--end of class="table-container"-->
     
     <script src="js/script.js"></script>
-</body>
-</html>
+<?php include('includes/footer.php');?>
