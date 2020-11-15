@@ -1,0 +1,9 @@
+CREATE DATABASE todo;
+
+USE todo;
+
+CREATE TABLE tasks (
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    task_description VARCHAR(255) NOT NULL,
+    due_date DATETIME DEFAULT NULL
+);
