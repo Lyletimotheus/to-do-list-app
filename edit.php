@@ -7,7 +7,12 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="css/style.css">
-
+    
+    <style>
+        .modal {
+            display: block;
+        }
+    </style>    
 </head>
 <body>
 
