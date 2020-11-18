@@ -69,27 +69,6 @@ mysqli_close($conn);
     </div>
     <!-- END OF ADD MODEL-->
 
-    <!-- EDIT MODAL -->
-    <div class="modal edit-modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            <h4>Edit an existing task ...</h4>
-            <br>
-            <form method="POST" action="">
-                <label for="">Description: 
-                    <input type="text" name="description">
-                </label>
-                <br>
-                <label for="">Due date:
-                    <input type="date" name="due_date">
-                </label>
-                <br>
-                <button type="submit" class="btn-confirm edit-button">Confirm(E)</button>
-            </form>
-        </div>
-    </div>
-    <!-- END OF EDIT MODAL -->
-
     <!-- REMOVE MODEL -->
     <div class="modal remove-modal" style="text-align: center;">
         <div class="modal-content">
@@ -124,7 +103,7 @@ foreach($tasks as $task){
                 <p>'.$task['due_date'].'</p>
                 <div>
                
-                    <button class="btn-warning edit-task">Edit</button>
+                    <button class="btn-warning edit-task"><a href="edit.php">Edit</a></button>
                     <button class="btn-danger remove-task">Remove</button>
                 </div>
             </div>           
