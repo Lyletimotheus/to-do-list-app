@@ -48,11 +48,11 @@ mysqli_close($conn);
     <br>
     <br>
 
-    <!-- ADD AND EDIT MODEL-->
-    <div class="modal update-modal">
+    <!-- ADD MODEL-->
+    <div class="modal insert-modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
-            <h4 class="task-heading"></h4>
+            <h4>Add a new task ...</h4>
             <br>
             <form method="POST" action="<?php echo $_SERVER['PHP_SELF']?>">
                 <label for="">Description: 
@@ -64,12 +64,31 @@ mysqli_close($conn);
                 </label>
                 <br>
                 <button type="submit" class="btn-confirm insert-button" name="submit">Confirm(I)</button>
+            </form>
+        </div>
+    </div>
+    <!-- END OF ADD MODEL-->
+
+    <!-- EDIT MODAL -->
+    <div class="modal edit-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h4>Edit an existing task ...</h4>
+            <br>
+            <form method="POST" action="">
+                <label for="">Description: 
+                    <input type="text" name="description">
+                </label>
+                <br>
+                <label for="">Due date:
+                    <input type="date" name="due_date">
+                </label>
+                <br>
                 <button type="submit" class="btn-confirm edit-button">Confirm(E)</button>
             </form>
         </div>
     </div>
-    <!-- END OF ADD AND EDIT MODEL-->
-
+    <!-- END OF EDIT MODAL -->
 
     <!-- REMOVE MODEL -->
     <div class="modal remove-modal" style="text-align: center;">

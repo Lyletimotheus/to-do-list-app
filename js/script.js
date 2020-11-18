@@ -4,9 +4,9 @@ let editTask = document.querySelectorAll('.edit-task');
 let removeTask = document.querySelectorAll('.remove-task');
 
 // Add and Edit Modal and Modal Buttons
-let updateModal = document.querySelector('.update-modal');
-let closeModal = document.querySelector('.close-modal');
-let newTaskHeading = document.querySelector('.task-heading');
+let insertModal = document.querySelector('.insert-modal');
+let editModal = document.querySelector('.edit-modal');
+let closeModal = document.querySelectorAll('.close-modal');
 
 let addTaskConfirm = document.querySelector('.insert-button');
 let editTaskConfirm = document.querySelector('.edit-button');
@@ -19,29 +19,26 @@ let confirmRemove = document.querySelector('.confirm-remove');
 
 // Button event listeners
 addTask.addEventListener('click', ()=> {
-    updateModal.style.display = 'block';
-    newTaskHeading.innerHTML = `Insert Task`;
-    addTaskConfirm.style.display = "inline";
-    editTaskConfirm.style.display = 'none';
+    insertModal.style.display = 'block';
 })
 
 editTask.forEach ( element => {
     element.addEventListener('click', ()=> {
-        updateModal.style.display = 'block';
-        newTaskHeading.innerHTML = `Update Current Task`;
-        addTaskConfirm.style.display = "none";
-        editTaskConfirm.style.display = 'inline';
+        editModal.style.display = 'block';
     })
 })
 
 removeTask.forEach ( element => {
     element.addEventListener('click', ()=> {
-    removeModal.style.display = 'block';
+        removeModal.style.display = 'block';
     })
 })
 
-closeModal.addEventListener('click', ()=> {
-    updateModal.style.display = 'none';
+closeModal.forEach ( element => {
+    element.addEventListener('click', ()=> {
+        insertModal.style.display = 'none';
+        editModal.style.display = 'none';
+    })
 })
 
 cancelRemove.addEventListener('click', ()=> {
