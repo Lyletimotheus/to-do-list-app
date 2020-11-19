@@ -103,7 +103,7 @@ foreach($tasks as $task){
                 <p>'.$task['due_date'].'</p>
                 <div>
                
-                    <button class="btn-warning edit-task"><a href="edit.php">Edit</a></button>
+                    <button class="btn-warning edit-task"><a href="'.ROOT_URL.'edit.php?id='.$task['id'].'">Edit</a></button>
                     <button class="btn-danger remove-task">Remove</button>
                 </div>
             </div>           
