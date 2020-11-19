@@ -19,7 +19,7 @@ $query = "UPDATE tasks SET
 ";
 
 if(mysqli_query($conn, $query)){
-    header('Location :'.ROOT_URL.'');
+    header('Location:'.ROOT_URL.'index.php');
 }else{
     echo "Error: ".mysqli_error($conn);
 }
@@ -53,7 +53,7 @@ mysqli_close($conn);
     <!-- EDIT MODAL -->
     <div class="modal edit-modal">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <a href="<?php echo ROOT_URL?>"><span class="close-modal">&times;</span></a>
             <h4>Edit an existing task ...</h4>
             <br>
             <form method="POST" action="<?php echo $_SERVER['PHP_SELF']?>">
