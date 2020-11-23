@@ -19,6 +19,10 @@ We wanted to better understand how the technologies work together.
 - We will be adding AJAX functionality later on to reduce the number of page reloads, when the user adds or updates a task.
 - A calender will be implemented to show the user their list of upcoming deadlines. It will be colored coded to show the user deadlines according to importance.
 
+## Security
+- Care should be taken when using this code in production as we've built this app for pure functionality and have not reviewed all the security aspects. 
+- It is not recommend to use this code in production. 
+
 ## Support 
 For any questions or any issues please feel free to send me an email to lyle6494@gmail.com 
 Alternatively, you can find me on most social media platforms, should the email option not suffice. 
